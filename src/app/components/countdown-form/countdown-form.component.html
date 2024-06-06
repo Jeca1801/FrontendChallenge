@@ -1,1 +1,12 @@
-<p>countdown-form works!</p>
+<form [formGroup]="countdownForm" class="countdown-form">
+  <app-countdown-title-input
+    [control]="countdownForm.controls['title']"
+    [label]="'Title'"
+    (blurEvent)="onBlur()"
+  ></app-countdown-title-input>
+  <app-countdown-date-input
+    [control]="countdownForm.controls['date']"
+    [label]="'Date'"
+    (changeEvent)="onDateChange()"
+  ></app-countdown-date-input>
+</form>
