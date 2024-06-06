@@ -1,1 +1,4 @@
-<p>countdown-date-input works!</p>
+<div class="countdown-date-input__wrapper">
+  <label for="countdown-date-input">{{ label }}</label>
+  <input [formControl]="control" (change)="onChange()" id="countdown-date-input" type="date" />
+</div>
