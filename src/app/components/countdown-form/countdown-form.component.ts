@@ -3,8 +3,8 @@ import {Subject, takeUntil} from "rxjs";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CountdownFormService} from "../../shared/service/countdown-form.service";
 import {CountdownFormModel} from "../../shared/model/countdown-form.model";
-import {CountdownDateInputComponent} from "../../shared/countdown-date-input/countdown-date-input.component";
-import {CountdownTitleInputComponent} from "../../shared/countdown-title-input/countdown-title-input.component";
+import {CountdownDateInputComponent} from "../../shared/components/countdown-date-input/countdown-date-input.component";
+import {CountdownTitleInputComponent} from "../../shared/components/countdown-title-input/countdown-title-input.component";
 
 @Component({
   selector: 'app-countdown-form',
