@@ -12,7 +12,7 @@ export class CountdownDateInputComponent {
   @Input({ required: true }) label!: string
   @Output() changeEvent: EventEmitter<void> = new EventEmitter<void>()
 
-  onChange() {
+  onChange(): void {
     this.changeEvent.emit()
   }
 }

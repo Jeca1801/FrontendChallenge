@@ -1,1 +1,4 @@
-<p>countdown-title-input works!</p>
+<div class="countdown-title-input__wrapper">
+  <label for="countdown-title-input">{{ label }}</label>
+  <input [formControl]="control" (blur)="onBlur()" id="countdown-title-input" type="text" />
+</div>
