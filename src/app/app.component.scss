@@ -1,13 +1,18 @@
-
 main {
   width: 100%;
   min-height: 100vh;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 18vh;
+  flex-direction: column;
   align-items: center;
   position: relative;
+}
 
-  h1 {
-    font-size: 6rem;
-  }
+h1 {
+  font-size: 6rem;
+}
+app-countdown-information {
+  width: 100%;
 }

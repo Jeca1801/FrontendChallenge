@@ -1,4 +1,4 @@
-import { Component } from '@angular/core'
+import {Component, OnInit} from '@angular/core'
 import {Subject, takeUntil} from "rxjs";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CountdownFormService} from "../../shared/service/countdown-form.service";
@@ -11,8 +11,9 @@ import {CountdownTitleInputComponent} from "../../shared/components/countdown-ti
   standalone: true,
   imports: [CountdownTitleInputComponent, CountdownDateInputComponent, ReactiveFormsModule],
   templateUrl: './countdown-form.component.html',
+  styleUrl: './countdown-form.component.scss'
 })
-export class CountdownFormComponent {
+export class CountdownFormComponent implements OnInit {
   private destroy$: Subject<void> = new Subject<void>()
   countdownForm = new FormGroup({
     title: new FormControl('', Validators.required),

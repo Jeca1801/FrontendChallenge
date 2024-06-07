@@ -1,2 +1,4 @@
-<div class="countdown-information__wrapper" *ngIf="formState$ | async as formState">
+<div class="countdown-information-container" *ngIf="formState$ | async as formState">
+  <app-contain-text [fontWeight]="'800'" class="title" [text]="formState.title"></app-contain-text>
+  <app-contain-text class="date" [text]="formState.date | countDown"></app-contain-text>
 </div>

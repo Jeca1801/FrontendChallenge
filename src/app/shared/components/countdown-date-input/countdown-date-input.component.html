@@ -1,4 +1,7 @@
-<div class="countdown-date-input__wrapper">
+<div class="input-container">
   <label for="countdown-date-input">{{ label }}</label>
   <input [formControl]="control" (change)="onChange()" id="countdown-date-input" type="date" />
+  <div class="error-message" *ngIf="control.invalid && (control.dirty || control.touched)">
+    <span *ngIf="control.errors?.required">This field is required</span>
+  </div>
 </div>
