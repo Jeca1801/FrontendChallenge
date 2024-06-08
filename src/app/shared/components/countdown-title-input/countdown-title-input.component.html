@@ -1,4 +1,7 @@
 <div class="input-container">
   <label for="countdown-title-input">{{ label }}</label>
   <input [formControl]="control" (blur)="onBlur()" id="countdown-title-input" type="text" />
+  <div class="error-message" *ngIf="control.invalid && (control.dirty || control.touched)">
+    <span *ngIf="control.errors?.['required']">This field is required</span>
+  </div>
 </div>

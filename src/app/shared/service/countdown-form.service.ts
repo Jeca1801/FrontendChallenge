@@ -1,26 +1,37 @@
-import { Injectable } from '@angular/core'
-import {BehaviorSubject, Observable} from "rxjs";
-import {CountdownFormModel} from "../model/countdown-form.model";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { CountdownFormModel } from '../model/countdown-form.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CountdownFormService {
-  private formState: BehaviorSubject<CountdownFormModel | null> = new BehaviorSubject<CountdownFormModel | null>({
-    title: 'Time to Midsummer  Eve',
-    date: new Date(2024, 5, 21),
-  })
-  formState$: Observable<CountdownFormModel | null> = this.formState.asObservable()
+  private readonly _formState: BehaviorSubject<CountdownFormModel | null>;
+  readonly formState$: Observable<CountdownFormModel | null>;
 
-  setFormState(formState: CountdownFormModel): void {
-    this.formState.next(formState)
-    localStorage.setItem('formState', JSON.stringify(formState))
+  constructor() {
+    const initialState: CountdownFormModel = {
+      title: 'Time to Midsummer Eve',
+      date: new Date(2024, 5, 21)
+    };
+    this._formState = new BehaviorSubject<CountdownFormModel | null>(initialState);
+    this.formState$ = this._formState.asObservable();
+    this.loadInitialFormState();
   }
 
-  getFormState(): void {
-    const savedState: string | null = localStorage.getItem('formState')
+  setFormState(formState: CountdownFormModel): void {
+    this._formState.next(formState);
+    this.saveFormStateToLocalStorage(formState);
+  }
+
+  saveFormStateToLocalStorage(formState: CountdownFormModel): void {
+    localStorage.setItem('formState', JSON.stringify(formState));
+  }
+
+   loadInitialFormState(): void {
+    const savedState: string | null = localStorage.getItem('formState');
     if (savedState) {
-      this.formState.next(JSON.parse(savedState))
+      this._formState.next(JSON.parse(savedState));
     }
   }
 }

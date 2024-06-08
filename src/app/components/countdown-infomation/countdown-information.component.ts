@@ -19,6 +19,6 @@ export class CountdownInformationComponent implements OnInit {
   constructor(private countdownFormService: CountdownFormService) {}
 
   ngOnInit(): void {
-    this.countdownFormService.getFormState()
+    this.countdownFormService.loadInitialFormState()
   }
 }

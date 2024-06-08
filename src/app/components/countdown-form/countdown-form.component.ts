@@ -26,7 +26,7 @@ export class CountdownFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.formService.getFormState();
+    this.formService.loadInitialFormState();
     this.formService.formState$
       .pipe(takeUntil(this.unsubscribe$))
       .subscribe((state: CountdownFormModel | null): void => {

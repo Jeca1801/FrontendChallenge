@@ -7,6 +7,7 @@ import {CommonModule} from "@angular/common";
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
   templateUrl: './countdown-date-input.component.html',
+  styleUrl: './countdown-date-input.component.scss'
 })
 export class CountdownDateInputComponent {
   @Input({ required: true }) control!: FormControl
