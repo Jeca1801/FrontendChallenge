@@ -9,34 +9,32 @@ import { CommonModule } from "@angular/common";
   styleUrl: './contain-text.component.scss'
 })
 export class ContainTextComponent implements AfterViewInit, OnChanges {
-  @Input() text: string = '';
   @Input() fontWeight: string = '400';
-
+  @Input() text: string = '';
   constructor(
-    private el: ElementRef,
     private renderer: Renderer2,
     private cdr: ChangeDetectorRef,
+    private el: ElementRef,
   ) {}
-
-  ngAfterViewInit(): void {
-    this.adjustTextToFit();
-  }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['text'] && !changes['text'].isFirstChange() && changes['text'].currentValue !== changes['text'].previousValue) {
       this.cdr.detectChanges();
-      this.adjustTextToFit();
+      this.resizeTextForDisplay();
     }
+  }
+  ngAfterViewInit(): void {
+    this.resizeTextForDisplay();
   }
 
   @HostListener('window:resize')
   onWindowResize() {
-    this.adjustTextToFit();
+    this.resizeTextForDisplay();
   }
 
-  private adjustTextToFit() {
-    const container = this.el.nativeElement.querySelector('.fit-container');
-    const textElement = this.el.nativeElement.querySelector('.fit-text');
+  private resizeTextForDisplay() {
+    const container = this.el.nativeElement.querySelector('.contain-text__container');
+    const textElement = this.el.nativeElement.querySelector('.contain-text__heading');
 
     if (!container || !textElement) {
       return;
@@ -45,6 +43,11 @@ export class ContainTextComponent implements AfterViewInit, OnChanges {
     let fontSize = 10;
     this.setFontSize(textElement, fontSize);
 
+    while (this.isTextBiggerThanContainer(textElement, container)) {
+      fontSize--;
+      this.setFontSize(textElement, fontSize);
+    }
+
     while (this.isTextSmallerThanContainer(textElement, container) && fontSize < 600) {
       fontSize++;
       this.setFontSize(textElement, fontSize);
@@ -52,22 +55,16 @@ export class ContainTextComponent implements AfterViewInit, OnChanges {
 
     fontSize--;
     this.setFontSize(textElement, fontSize);
-
-    while (this.isTextBiggerThanContainer(textElement, container)) {
-      fontSize--;
-      this.setFontSize(textElement, fontSize);
-    }
   }
 
   private setFontSize(element: HTMLElement, size: number) {
     this.renderer.setStyle(element, 'font-size', `${size}px`);
   }
+  private isTextBiggerThanContainer(textElement: HTMLElement, container: HTMLElement) {
+    return textElement.offsetWidth > container.offsetWidth || textElement.offsetHeight > container.offsetHeight;
+  }
 
   private isTextSmallerThanContainer(textElement: HTMLElement, container: HTMLElement) {
     return textElement.offsetWidth <= container.offsetWidth && textElement.offsetHeight <= container.offsetHeight;
-  }
-
-  private isTextBiggerThanContainer(textElement: HTMLElement, container: HTMLElement) {
-    return textElement.offsetWidth > container.offsetWidth || textElement.offsetHeight > container.offsetHeight;
   }
 }

@@ -1,35 +1,17 @@
+
 * {
   box-sizing: border-box;
 }
 
 body {
-  margin: 0;
   margin: 0px 24px 0px 24px;
 }
 
-.error-message {
-  color: red;
-  margin-top: 0.5rem;
-}
-
 .input-container {
-  position: relative;
-  width: 278px;
   display: flex;
   flex-direction: column;
-
-  & label {
-    color: black;
-    background: white;
-    cursor: pointer;
-    padding: 0 0.5rem;
-    margin-bottom: 0.5rem;
-    font-size: 0.875rem;
-
-    position: absolute;
-    left: 0.5rem;
-    top: -0.28rem;
-  }
+  width: 278px;
+  position: relative;
 
   & input {
     color: black;
@@ -43,5 +25,18 @@ body {
     &:focus {
       border-color: blue;
     }
+  }
+
+  & label {
+    color: black;
+    background: white;
+    cursor: pointer;
+    padding: 0 0.5rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+
+    position: absolute;
+    left: 0.5rem;
+    top: -0.28rem;
   }
 }

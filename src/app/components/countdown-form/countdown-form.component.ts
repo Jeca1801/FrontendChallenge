@@ -35,10 +35,12 @@ export class CountdownFormComponent implements OnInit {
     })
   }
 
-  onDateChange(): void {
-    if (this.countdownForm.valid) {
-      this.onSubmit()
+  onSubmit(): void {
+    const formValue: CountdownFormModel = {
+      title: this.countdownForm.get('title')?.value || '',
+      date: this.countdownForm.get('date')?.value || new Date(),
     }
+    this.countdownFormService.setFormState(formValue)
   }
 
   onBlur(): void {
@@ -47,11 +49,9 @@ export class CountdownFormComponent implements OnInit {
     }
   }
 
-  onSubmit(): void {
-    const formValue: CountdownFormModel = {
-      title: this.countdownForm.get('title')?.value || '',
-      date: this.countdownForm.get('date')?.value || new Date(),
+  onDateChange(): void {
+    if (this.countdownForm.valid) {
+      this.onSubmit()
     }
-    this.countdownFormService.setFormState(formValue)
   }
 }

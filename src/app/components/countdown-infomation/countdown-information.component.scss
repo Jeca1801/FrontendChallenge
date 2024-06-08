@@ -3,6 +3,12 @@ app-contain-text {
   justify-content: center;
 }
 
-.title {
-  color: #72035d;
+.countdown-information__title {
+  color: #72035D;
+}
+
+@media (max-width: 635px) {
+  .countdown-information__title {
+    margin-bottom: 2rem;
+  }
 }

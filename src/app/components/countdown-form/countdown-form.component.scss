@@ -4,3 +4,9 @@
   justify-content: center;
   gap: 2rem;
 }
+
+@media (max-width: 635px) {
+  .countdown-form {
+    gap: 4rem;
+  }
+}

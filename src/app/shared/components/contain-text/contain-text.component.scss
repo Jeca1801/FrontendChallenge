@@ -1,4 +1,4 @@
-.fit-container {
+.contain-text__container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,7 +6,7 @@
   max-height: 50vh;
 }
 
-.fit-text {
+.contain-text__heading:first-child {
   margin: 0;
   padding: 0;
   white-space: nowrap;
