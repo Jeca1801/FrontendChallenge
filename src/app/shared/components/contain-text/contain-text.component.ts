@@ -28,11 +28,11 @@ export class ContainTextComponent implements AfterViewInit, OnChanges {
   }
 
   @HostListener('window:resize')
-  onWindowResize() {
+  onWindowResize(): void {
     this.resizeTextForDisplay();
   }
 
-  private resizeTextForDisplay() {
+  private resizeTextForDisplay(): void {
     const container = this.el.nativeElement.querySelector('.contain-text__container');
     const textElement = this.el.nativeElement.querySelector('.contain-text__heading');
 
@@ -40,7 +40,7 @@ export class ContainTextComponent implements AfterViewInit, OnChanges {
       return;
     }
 
-    let fontSize = 10;
+    let fontSize: number = 10;
     this.setFontSize(textElement, fontSize);
 
     while (this.isTextBiggerThanContainer(textElement, container)) {
@@ -57,14 +57,14 @@ export class ContainTextComponent implements AfterViewInit, OnChanges {
     this.setFontSize(textElement, fontSize);
   }
 
-  private setFontSize(element: HTMLElement, size: number) {
+  private setFontSize(element: HTMLElement, size: number): void {
     this.renderer.setStyle(element, 'font-size', `${size}px`);
   }
-  private isTextBiggerThanContainer(textElement: HTMLElement, container: HTMLElement) {
+  private isTextBiggerThanContainer(textElement: HTMLElement, container: HTMLElement): boolean{
     return textElement.offsetWidth > container.offsetWidth || textElement.offsetHeight > container.offsetHeight;
   }
 
-  private isTextSmallerThanContainer(textElement: HTMLElement, container: HTMLElement) {
+  private isTextSmallerThanContainer(textElement: HTMLElement, container: HTMLElement): boolean {
     return textElement.offsetWidth <= container.offsetWidth && textElement.offsetHeight <= container.offsetHeight;
   }
 }
